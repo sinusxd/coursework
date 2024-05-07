@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" th:href="@{/styles/register.css}" href="../static/styles/register.css"/>
-    <title>Authorization</title>
+    <title>Регистрация</title>
 </head>
 <body>
     <div class = "wrapper">
@@ -27,10 +27,13 @@
                     <input type="number" name="age" min="0" placeholder="Возраст" required/>
                     <input class = "reg" type="submit" value="Регистрация" required/>
                 </form>
-                <div th:if="${param.error}" th:style="'color: red;'">
-                    Имя пользователя уже существует
+                <div th:if="${error}" th:style="'color: red;'">
+                    Пользователь с такой почтой/именем уже существует!
                 </div>
-                <div th:if="${param.unknownError}" th:style="'color: red;'">
+                <div th:if="${passwordError}" th:style="'color: red;'">
+                    Пароли не совпадают
+                </div>
+                <div th:if="${unknownError}" th:style="'color: red;'">
                     Неизвестная ошибка
                 </div>
             </div>
