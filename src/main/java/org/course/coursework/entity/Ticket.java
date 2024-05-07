@@ -16,12 +16,10 @@ public class Ticket {
     @Column(name = "seat_number")
     String seatNumber;
     @Column(name = "class")
-    String flight_class;
-    @ManyToMany
-    @JoinTable(name = "user_ticket",
-    joinColumns = @JoinColumn(name = "ticket_id"),
-    inverseJoinColumns = @JoinColumn(name = "user_id"))
-    List<User> userList;
+    String flightClass;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
     public Long getId() {
         return id;
@@ -47,11 +45,19 @@ public class Ticket {
         this.seatNumber = seatNumber;
     }
 
-    public String getFlight_class() {
-        return flight_class;
+    public String getFlightClass() {
+        return flightClass;
     }
 
-    public void setFlight_class(String flight_class) {
-        this.flight_class = flight_class;
+    public void setFlightClass(String flightClass) {
+        this.flightClass = flightClass;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

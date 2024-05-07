@@ -17,10 +17,7 @@ public class User {
     @OneToOne
     @JoinColumn(name = "passport_id")
     Passport passport;
-    @ManyToMany
-    @JoinTable(name = "user_ticket",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "ticket_id"))
+    @OneToMany(mappedBy = "user")
     List<Ticket> ticketList;
 
     public Long getId() {
@@ -53,5 +50,27 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
+    }
+
+    public boolean addTicket(Ticket ticket){
+        if (ticketList != null)
+            return ticketList.add(ticket);
+        return false;
     }
 }
