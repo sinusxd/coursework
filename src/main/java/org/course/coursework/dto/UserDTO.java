@@ -30,7 +30,8 @@ public class UserDTO {
         user.setId(this.getId());
         user.setUsername(this.getUsername());
         user.setEmail(this.getEmail());
-        user.setPassport(this.getPassportDTO().toEntity());
+        if(this.getPassportDTO() != null)
+            user.setPassport(this.getPassportDTO().toEntity());
         if (ticketDTOList != null)
             user.setTicketList(this.getTicketDTOList()
                     .stream().map(TicketDTO::toEntity).collect(Collectors.toList()));
@@ -81,5 +82,16 @@ public class UserDTO {
 
     public void setTicketDTOList(List<TicketDTO> ticketDTOList) {
         this.ticketDTOList = ticketDTOList;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", passportDTO=" + passportDTO +
+                ", ticketDTOList=" + ticketDTOList +
+                '}';
     }
 }

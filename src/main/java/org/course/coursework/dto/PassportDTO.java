@@ -17,7 +17,6 @@ public class PassportDTO {
         passportDTO.setFirstName(passport.getFirstName());
         passportDTO.setSecondName(passport.getSecondName());
         passportDTO.setAge(passport.getAge());
-        passportDTO.setUserDTO(UserDTO.fromEntity(passport.getUser()));
         return passportDTO;
     }
 
@@ -28,7 +27,6 @@ public class PassportDTO {
         passport.setFirstName(this.getFirstName());
         passport.setSecondName(this.getSecondName());
         passport.setAge(this.getAge());
-        passport.setUser(this.getUserDTO().toEntity());
         return passport;
     }
 
@@ -64,10 +62,6 @@ public class PassportDTO {
         this.secondName = secondName;
     }
 
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
-    }
-
     public Integer getAge() {
         return age;
     }
@@ -76,7 +70,4 @@ public class PassportDTO {
         this.age = age;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
-    }
 }

@@ -14,8 +14,6 @@ public class Passport {
     String firstName;
     @Column(name = "second_name")
     String secondName;
-    @OneToOne(mappedBy = "passport")
-    User user;
     Integer age;
 
     public Long getId() {
