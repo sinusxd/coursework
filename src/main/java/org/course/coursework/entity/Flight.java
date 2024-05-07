@@ -24,12 +24,12 @@ public class Flight {
     Airport arrivalAirport;
     @Column(name = "departure_date")
     LocalDate departureDate;
-    @Column(name = "arrival_time")
-    LocalTime arrivalTime;
-    @Column(name = "arrival_date")
-    LocalDate arrivalDate;
     @Column(name = "departure_time")
     LocalTime departureTime;
+    @Column(name = "arrival_date")
+    LocalDate arrivalDate;
+    @Column(name = "arrival_time")
+    LocalTime arrivalTime;
     @OneToMany(mappedBy = "flight")
     List<Ticket> ticketList;
 
