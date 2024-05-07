@@ -2,7 +2,6 @@ package org.course.coursework.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 
 @Entity
 @Table(name = "tickets")

@@ -1,7 +1,6 @@
 package org.course.coursework.dto;
 
 import org.course.coursework.entity.Passport;
-import org.springframework.security.core.parameters.P;
 
 public class PassportDTO {
     Long id;
