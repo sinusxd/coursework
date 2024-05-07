@@ -7,14 +7,14 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flight_id")
     Flight flight;
     @Column(name = "seat_number")
     String seatNumber;
     @Column(name = "class")
     String flightClass;
-    @ManyToOne
+    @ManyToOne(cascade =  CascadeType.ALL)
     @JoinColumn(name = "user_id")
     User user;
 

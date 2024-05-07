@@ -48,14 +48,6 @@ public class Passport {
         this.secondName = secondName;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Integer getAge() {
         return age;
     }

@@ -14,10 +14,10 @@ public class User {
     String email;
     @Column(name = "password_hash")
     String passwordHash;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "passport_id")
     Passport passport;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Ticket> ticketList;
 
     public Long getId() {

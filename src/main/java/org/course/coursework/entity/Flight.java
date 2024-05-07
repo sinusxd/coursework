@@ -13,13 +13,13 @@ public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    @OneToOne
+    @OneToOne(cascade =  CascadeType.ALL)
     @JoinColumn(name = "airline_id")
     Airline airline;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "departure_airport_id")
     Airport departureAirport;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "arrival_airport_id")
     Airport arrivalAirport;
     @Column(name = "departure_date")
@@ -30,7 +30,7 @@ public class Flight {
     LocalDate arrivalDate;
     @Column(name = "arrival_time")
     LocalTime arrivalTime;
-    @OneToMany(mappedBy = "flight")
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
     List<Ticket> ticketList;
 
     public Long getId() {
