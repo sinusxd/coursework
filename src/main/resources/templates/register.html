@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/styles/register.css}" href="../static/styles/register.css"/>
+    <title>Authorization</title>
+</head>
+<body>
+    <div class = "wrapper">
+        <div class = "content">
+            <div class = "login">
+                <img class = "logo" th:src="@{/images/logo.png}">
+                <h2>Регистрация</h2>
+                <form id = "login_form" th:action="@{/register}" method="post">
+                    <h3>Информация о пользователе</h3>
+                    <input type="text" name="username" placeholder="Имя пользователя" required/>
+                    <input type="email" name="email" placeholder="Email" required/>
+                    <input type="password" name="password" placeholder="Пароль" required/>
+                    <input type="password" name="confirmPassword" placeholder="Подтвердите пароль" required/>
+                    <h3>Паспортные данные</h3>
+                    <input type="text" name="lastName" placeholder="Фамилия" required/>
+                    <input type="text" name="firstName" placeholder="Имя" required/>
+                    <input type="text" name="secondName" placeholder="Отчество" required/>
+                    <input type="number" name="age" min="0" placeholder="Возраст" required/>
+                    <input class = "reg" type="submit" value="Регистрация" required/>
+                </form>
+                <div th:if="${param.error}" th:style="'color: red;'">
+                    Имя пользователя уже существует
+                </div>
+                <div th:if="${param.unknownError}" th:style="'color: red;'">
+                    Неизвестная ошибка
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
