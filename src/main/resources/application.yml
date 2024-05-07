@@ -1,4 +1,9 @@
 spring:
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+      table-name: spring_session
   datasource:
     url: jdbc:postgresql://localhost:5432/aviasales
     username: roflandown
