@@ -1,8 +1,6 @@
 package org.course.coursework.entity;
 
 import jakarta.persistence.*;
-
-
 @Entity
 @Table(name = "tickets")
 public class Ticket {
@@ -19,6 +17,16 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
+
+    Double price;
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
     public Long getId() {
         return id;

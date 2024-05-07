@@ -7,7 +7,6 @@ CREATE TABLE flights(
     departure_time TIME,
     arrival_date DATE,
     arrival_time TIME,
-    price DOUBLE PRECISION,
     FOREIGN KEY (airline_id) REFERENCES airlines(id),
     FOREIGN KEY (departure_airport_id) REFERENCES airports(id),
     FOREIGN KEY (arrival_airport_id) REFERENCES airports(id)

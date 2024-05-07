@@ -8,6 +8,7 @@ public class TicketDTO {
     String seatNumber;
     String flightClass;
     UserDTO userDTO;
+    Double price;
 
     public static TicketDTO fromEntity(Ticket ticket){
         TicketDTO ticketDTO = new TicketDTO();
@@ -16,6 +17,7 @@ public class TicketDTO {
         ticketDTO.setSeatNumber(ticket.getSeatNumber());
         ticketDTO.setFlightClass(ticket.getFlightClass());
         ticketDTO.setUserDTO(UserDTO.fromEntity(ticket.getUser()));
+        ticketDTO.setPrice(ticket.getPrice());
         return ticketDTO;
     }
 
@@ -26,6 +28,7 @@ public class TicketDTO {
         ticket.setSeatNumber(this.getSeatNumber());
         ticket.setFlightClass(this.getFlightClass());
         ticket.setUser(this.getUserDTO().toEntity());
+        ticket.setPrice(this.getPrice());
         return ticket;
     }
 
@@ -67,5 +70,12 @@ public class TicketDTO {
 
     public void setUserDTO(UserDTO userDTO) {
         this.userDTO = userDTO;
+    }
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

@@ -4,5 +4,6 @@ CREATE TABLE tickets(
     flight_id INTEGER,
     seat_number VARCHAR(255),
     class VARCHAR(255),
+    price DOUBLE PRECISION,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
