@@ -1,5 +1,7 @@
 package org.course.coursework.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.course.coursework.dto.PassportDTO;
 import org.course.coursework.dto.UserDTO;
 import org.course.coursework.dto.UserRegistrationDTO;
@@ -9,7 +11,9 @@ import org.course.coursework.exception.UserNotFoundException;
 import org.course.coursework.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,10 +29,6 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String getRegPage(){
         return "register";
-    }
-    @GetMapping("/login")
-    public String getLoginPage(){
-        return "login";
     }
     @PostMapping("/register")
     public ModelAndView register(@ModelAttribute UserRegistrationDTO registrationDTO){
@@ -61,6 +61,19 @@ public class AuthenticationController {
         }
         return new ModelAndView("login", "success", "Registration successful");
     }
+    @GetMapping("/login")
+    public String loginPage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            Exception lastException = (Exception) session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+            if (lastException != null) {
+                System.out.println(lastException.getMessage());
+                model.addAttribute("errorMessage", lastException.getMessage());
+            }
+        }
+        return "login";
+    }
+
 
 
 

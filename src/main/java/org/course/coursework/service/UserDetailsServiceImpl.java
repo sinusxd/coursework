@@ -15,8 +15,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        org.course.coursework.entity.User user = userRepository.findByUsername(username);
-        user = userRepository.findByEmail(username);
+        org.course.coursework.entity.User user = null;
+        user = userRepository.findByUsername(username);
+        if (user == null)
+            user = userRepository.findByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
