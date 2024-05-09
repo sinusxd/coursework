@@ -20,17 +20,25 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers( "/register", "/login", "/styles/**", "/images/**").permitAll()
+                        .requestMatchers( "/register", "/login", "/styles/**", "/images/**", "/resources/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")  // Указывает страницу входа
+                        .defaultSuccessUrl("/index", true)
                         .permitAll()         // Разрешает доступ к форме логина всем
                 )
                 .logout((logout) -> logout.permitAll());
@@ -48,6 +56,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return userDetailsService;
+    }
 
 
 }
