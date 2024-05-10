@@ -5,7 +5,7 @@ spring:
       initialize-schema: always
       table-name: spring_session
   datasource:
-    url: jdbc:postgresql://localhost:5432/aviasales
+    url: jdbc:postgresql://localhost:5432/aviasales?characterEncoding=UTF-8
     username: roflandown
     password: 1234
     driver-class-name: org.postgresql.Driver
@@ -16,3 +16,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          charSet: UTF-8
+          useUnicode: true
+server:
+  servlet:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
