@@ -11,8 +11,5 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     FlightService flightService;
-    @PostMapping
-    public void test(@RequestBody FlightDTO flightDTO){
-        flightService.addFlight(flightDTO);
-    }
+
 }
