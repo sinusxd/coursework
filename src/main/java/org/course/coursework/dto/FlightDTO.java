@@ -20,7 +20,7 @@ public class FlightDTO {
 
     public static FlightDTO fromEntity(Flight flight){
         FlightDTO flightDTO = new FlightDTO();
-        flightDTO.setId(flightDTO.getId());
+        flightDTO.setId(flight.getId());
         flightDTO.setAirlineDTO(AirlineDTO.fromEntity(flight.getAirline()));
         flightDTO.setDepartureAirportDTO(AirportDTO.fromEntity(flight.getDepartureAirport()));
         flightDTO.setArrivalAirportDTO(AirportDTO.fromEntity(flight.getArrivalAirport()));
@@ -121,5 +121,20 @@ public class FlightDTO {
 
     public void setTicketDTOList(List<TicketDTO> ticketDTOList) {
         this.ticketDTOList = ticketDTOList;
+    }
+
+    @Override
+    public String toString() {
+        return "FlightDTO{" +
+                "id=" + id +
+                ", airlineDTO=" + airlineDTO +
+                ", departureAirportDTO=" + departureAirportDTO +
+                ", arrivalAirportDTO=" + arrivalAirportDTO +
+                ", departureDate=" + departureDate +
+                ", departureTime=" + departureTime +
+                ", arrivalDate=" + arrivalDate +
+                ", arrivalTime=" + arrivalTime +
+                ", ticketDTOList=" + ticketDTOList +
+                '}';
     }
 }
