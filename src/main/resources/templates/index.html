@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Авиабилеты</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/air-datepicker/dist/js/datepicker.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" href="../static/styles/main.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<form th:action="@{/index}" th:object="${searchDTO}" method="post">
+    <div class="search-box">
+        <input type="text" placeholder="Откуда" class="searchCity" th:field="*{from}"/>
+        <span class="arrow">→</span>
+        <input type="text" placeholder="Куда" class="searchCity" th:field="*{to}"/>
+        <div id="date">
+            <input type="text" id="datepicker-display" placeholder="Когда"/> <!-- Видимое пользователю -->
+            <input type="hidden" id="datepicker" th:field="*{when}"/> <!-- Скрытое поле для сервера -->
+        </div>
+        <select id="class-select" th:field="*{classSelect}">
+            <option value="ECONOMY" selected>эконом-класс</option>
+            <option value="BUSINESS">бизнес-класс</option>
+        </select>
+        <button type="submit">Найти билеты</button>
+    </div>
+</form>
+<script>
+        $(function() {
+            $(".searchCity").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "/api/search",
+                        type: "GET",
+                        data: {
+                            query: request.term
+                        },
+                        success: function(data) {
+                            // Преобразование массива строк в массив объектов для autocomplete
+                            response($.map(data, function(item) {
+                                return {
+                                    label: item,  // Теперь item это строка, а не объект
+                                    value: item   // Используем ту же строку для значения
+                                };
+                            }));
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function(event, ui) {
+                    console.log("Selected: " + ui.item.value);
+                }
+            });
+        });
+        $(document).ready(function() {
+            $('#datepicker-display').datepicker({
+                autoClose: true,
+                dateFormat: 'dd MM yy', // Устанавливаем формат даты, включая месяц словом
+                onSelect: function(formattedDate, date, inst) {
+                    // Массив месяцев в родительном падеже
+                    var months = [
+                        'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                        'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+                    ];
+
+                    // Получаем день, месяц и день недели
+                    var day = date.getDate();
+                    var monthIndex = date.getMonth();
+                    var weekday = date.toLocaleString('ru', { weekday: 'short' });
+
+                    // Формат для отображения пользователю
+                    var displayFormat = `${day} ${months[monthIndex]}, ${weekday}`;
+                    $('#datepicker-display').val(displayFormat);
+
+                    // Формат для отправки на сервер
+                    var serverFormat = $.datepicker.formatDate('dd-mm-yy', date);
+                    $('#datepicker').val(serverFormat);
+                }
+            });
+        });
+
+        $(function() {
+            // Инициализация jQuery UI Selectmenu
+            $("#class-select").selectmenu();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0b73fe;
+    color: white;
+    padding: 20px;
+    margin: 0;
+}
+.search-box {
+    background:  #0b73fe;
+    /*padding: 10px;*/
+    gap: 2px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+input, button, select {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background: white;
+}
+input {
+    flex-grow: 1;
+    height: 1.5rem;
+}
+button {
+    background-color: #fa742d;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+    cursor: pointer;
+    flex-grow: 1;
+    height: 2.7rem;
+}
+select {
+    background-color: #444;
+    color: white;
+}
+.label {
+    background: #555;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.arrow{
+    margin-right: 5px;
+}
+
+.ui-selectmenu-button.ui-button {
+    width: 200px; /* Ширина выпадающего списка */
+}
+.ui-selectmenu-button{
+    height: 1.8rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#date{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+button:hover{
+    background-color: rgba(250, 116, 45, 0.9);
+}
