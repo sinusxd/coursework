@@ -33,7 +33,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ModelAndView register(@ModelAttribute UserRegistrationDTO registrationDTO){
         if (!registrationDTO.getPassword().equals(registrationDTO.getConfirmPassword())) {
-            return new ModelAndView("register", "passwordError", "Passwords do not match");
+            return new ModelAndView("register", "passwordError", "Пароли не совпадают");
         }
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(registrationDTO.getUsername());
@@ -67,14 +67,10 @@ public class AuthenticationController {
         if (session != null) {
             Exception lastException = (Exception) session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
             if (lastException != null) {
-                System.out.println(lastException.getMessage());
-                model.addAttribute("errorMessage", lastException.getMessage());
+                model.addAttribute("error", "Неверные данные для входа");
             }
         }
         return "login";
     }
-
-
-
 
 }
