@@ -44,11 +44,11 @@
                     <div class="arrival">
                         <span><strong th:text="${flight.getArrivalTime()}"></strong></span>
                         <span th:text="${flight.getDepartureAirportDTO().getCity()}"></span>
-                        <span th:text="${#temporals.format(flight.getArrivalDate(), 'd MMMM, EEE')}"</span>
+                        <span th:text="${#temporals.format(flight.getArrivalDate(), 'd MMMM, EEE')}"></span>
                     </div>
                 </div>
                 <div class="price-tag">
-                    <button>Выбрать билет</button>
+                    <a th:href="@{/view-ticket(flightId=${flight.getId()})}">Выбрать билет</a>
                     <p></p>
                 </div>
             </div>

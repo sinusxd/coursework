@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.plane {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cockpit {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.seats {
+    list-style: none;
+    padding: 10px;
+    margin: 10px;
+}
+
+.seat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+
+.seat label {
+    background-color: #F0F0F0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.seat input[type="checkbox"] {
+    display: none;
+}
+
+.seat input[type="checkbox"]:checked + label {
+    background-color: #BADA55;
+}
+
+.rows{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+.cross-checkbox + label {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    color: transparent; /* Прячем текст внутри метки */
+}
+
+.cross-checkbox + label::before,
+.cross-checkbox + label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 20px;
+    height: 2px;
+    background-color: #333;
+}
+
+.cross-checkbox + label::before {
+    transform: rotate(45deg); /* Поворачиваем на 45 градусов */
+}
+
+.cross-checkbox + label::after {
+    transform: rotate(-45deg); /* Поворачиваем на -45 градусов */
+}
+
+.cross-checkbox:checked + label::before,
+.cross-checkbox:checked + label::after {
+    background-color: red; /* Меняем цвет крестика при выборе */
+}
+
+.cross-checkbox {
+    display: none; /* Скрываем сам чекбокс */
+}
+

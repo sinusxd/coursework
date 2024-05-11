@@ -1,10 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор места</title>
+    <link rel="stylesheet" th:href="@{/styles/ticket.css}" href="../static/styles/ticket.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<div class="plane">
+    <div class="cockpit">
+        <h1>Выберите место</h1>
+        <p th:text="${flight.getDepartureAirportDTO().getCity()} + ' → ' + ${flight.getArrivalAirportDTO().getCity()}"></p>
+        <p th:text="'Пассажир: ' + ${passport.getLastName()} + ' ' + ${passport.getFirstName()} + ' ' + ${passport.getSecondName()}"></p>
+    </div>
+    <div class = "rows">
+        <div class="row">
+            <p>A</p>
+            <ol class="seats" type="A">
+                <li class="seat">
+                    <input type="checkbox" id="A1"/>
+                    <label for="A1"></label>
+                </li>
+            </ol>
+        </div>
+        <div class="row">
+            <p>B</p>
+            <ol class="seats" type="B">
+                <li class="seat">
+                    <input type="checkbox" id="B1" />
+                    <label for="B1"></label>
+                </li>
+            </ol>
+        </div>
+        <div class="row">
+            <p>C</p>
+            <ol class="seats" type="C">
+                <li class="seat">
+                    <input type="checkbox" id="C1" />
+                    <label for="C1"></label>
+                </li>
+            </ol>
+        </div>
+        <div class="row">
+            <p style="opacity: 0;">N</p>
+            <ol class="seats" type="N">
+                <li class="seat">
+                    <label style="background-color: white;" >1</label>
+                </li>
+            </ol>
+        </div>
+        <div class="row">
+            <p>D</p>
+            <ol class="seats" type="D">
+                <li class="seat">
+                    <input type="checkbox" id="D1" />
+                    <label for="D1"></label>
+                </li>
+            </ol>
+        </div>
+        <div class="row">
+            <p>E</p>
+            <ol class="seats" type="E">
+                <li class="seat">
+                    <input type="checkbox" id="E1" />
+                    <label for="E1"></label>
+                </li>
+            </ol>
+        </div>
+        <div class="row">
+            <p>F</p>
+            <ol class="seats" type="F">
+                <li class="seat">
+                    <input type="checkbox" id="F1" />
+                    <label for="F1"></label>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", (e) => {
+        //document.getElementById("A1").setAttribute('disabled', 'disabled');
 
+        let seats = document.querySelectorAll(".seat");
+        let letters = ['A', 'B', 'C', 'N', 'D', 'E', 'F']
+        for (let i = 0 ; i < 7; ++i){
+            let seat = seats[i];
+            for (let j = 2; j <= 25; ++j){
+                if (i == 3){
+                    let lab = document.createElement("label");
+                    lab.textContent = j;
+                    lab.style.backgroundColor = 'white';
+                    seat.appendChild(lab);
+                    continue;
+                }
+                let inp = document.createElement("input");
+                inp.type = "checkbox";
+                inp.id = letters[i] + j;
+                let lab = document.createElement("label");
+                lab.setAttribute("for", inp.id);
+                seat.appendChild(inp);
+                seat.appendChild(lab);
+
+            }
+        }
+        let checkboxes = document.querySelectorAll("input[type='checkbox']");
+        console.log(checkboxes)
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                // Снимаем отметку со всех чекбоксов, кроме текущего
+                if (this.checked) {
+                    checkboxes.forEach(box => {
+                        if (box !== this) box.checked = false;
+                    });
+                }
+            });
+        });
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get("flightId");
+        $.ajax({
+            url: "/api/getTicketsByFlightId/" + query,
+            type: 'GET',
+            success: function(data) {
+                data.forEach(function(ticketDTO) {
+                    // Находим input по id, который соответствует seatNumber
+                    var seatInput = document.getElementById(ticketDTO.seatNumber);
+                    // Проверяем, существует ли такой элемент
+                    if (seatInput) {
+                        // Добавляем класс cross-checkbox
+                        seatInput.classList.add('cross-checkbox');
+                        seatInput.setAttribute("disabled", "disabled");
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Произошла ошибка: " + error + " " + status);
+            }
+        });
+    })
+</script>
 </body>
 </html>

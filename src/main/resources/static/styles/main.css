@@ -140,7 +140,7 @@ form button:hover{
     background-color: darkorange;
 }
 
-.price-tag button{
+.price-tag a{
     margin-bottom: 1rem;
     width: 10rem;
     height: 4rem;
@@ -152,8 +152,10 @@ form button:hover{
     font-style: normal;
     font-size: large;
     font-weight: 700;
+    text-decoration: none;
+    text-align: center;
 }
-.price-tag button:hover{
+.price-tag a:hover{
     background-color: #f56618;
 }
 

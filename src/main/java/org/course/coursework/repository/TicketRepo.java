@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TicketRepo extends CrudRepository<Ticket, Long> { }
+public interface TicketRepo extends CrudRepository<Ticket, Long> {
+
+}
