@@ -1,33 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #0b73fe;
-    color: white;
+    background-color: #eff1f4;
     padding: 20px;
     margin: 0;
 }
 .search-box {
     background:  #0b73fe;
-    /*padding: 10px;*/
+    padding: 40px;
     gap: 2px;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
-input, button, select {
+form input, form button, form select {
     padding: 10px;
     margin-right: 10px;
     border: none;
     border-radius: 5px;
     background: white;
 }
-input {
+form input {
     flex-grow: 1;
     height: 1.5rem;
 }
-button {
+form button {
     background-color: #fa742d;
+    font-family: "Lato", sans-serif;;
     color: white;
     font-weight: bold;
     font-size: larger;
@@ -67,6 +69,145 @@ select {
 
 
 
-button:hover{
+form button:hover{
     background-color: rgba(250, 116, 45, 0.9);
+}
+
+.card {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+}
+
+.price-tag {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    height: 100%;
+}
+
+.flight-info {
+    flex-basis: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.price-tag > span, .price, .remaining {
+    display: block;
+    text-align: center;
+    color: green;
+}
+
+
+.button {
+    width: 100%;
+    font-family: "Lato", sans-serif;;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+.duration span:first-child {
+    margin-right: 10px;
+}
+
+.duration {
+    font-size: smaller;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: grey;
+    flex-grow: 2;
+}
+
+.button:hover {
+    background-color: darkorange;
+}
+
+.price-tag button{
+    margin-bottom: 1rem;
+    width: 10rem;
+    height: 4rem;
+    border-radius: 5px;
+    border: 0px;
+    background-color: #fa742d;
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-size: large;
+    font-weight: 700;
+}
+.price-tag button:hover{
+    background-color: #f56618;
+}
+
+.price-tag p{
+    margin-block-start: 0;
+    font-size: 25px;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.departure{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.arrival{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+
+img{
+    width: 25px;
+    height: 25px;
+    opacity: 0.5;
+    margin: 1rem;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center form{
+    width: 90%;
+}
+
+.cards{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form input::placeholder{
+    font-family: "Lato", sans-serif;
+}
+
+option{
+    font-family: "Lato", sans-serif;;
 }
