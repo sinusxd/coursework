@@ -3,9 +3,42 @@
 
 body {
     background-color: #eff1f4;
-    padding: 20px;
     margin: 0;
 }
+
+.header {
+    background-color: #0b73fe;
+    font-family: "Lato", sans-serif;
+    color: #ffffff;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.header p{
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+.header img{
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+}
+
+.header nav{
+    font-family: "Lato", sans-serif;
+}
+
 .search-box {
     background:  #0b73fe;
     padding: 40px;
@@ -180,7 +213,7 @@ form button:hover{
     margin-left: 1rem;
 }
 
-img{
+.duration img{
     width: 25px;
     height: 25px;
     opacity: 0.5;
@@ -213,3 +246,4 @@ form input::placeholder{
 option{
     font-family: "Lato", sans-serif;;
 }
+

@@ -34,7 +34,7 @@ public class TicketController {
         catch (FlightNotFoundException e){
             return ResponseEntity.badRequest().body("Такой полет не найден");
         }
-        System.out.println(flight.getTicketDTOList());
+
         return ResponseEntity.ok(flight.getTicketDTOList());
     }
 

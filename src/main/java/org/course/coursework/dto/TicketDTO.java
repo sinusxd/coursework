@@ -8,12 +8,16 @@ public class TicketDTO {
     String flightClass;
     Double price;
 
+    Long userId;
+
     public static TicketDTO fromEntity(Ticket ticket){
         TicketDTO ticketDTO = new TicketDTO();
         ticketDTO.setId(ticket.getId());
         ticketDTO.setSeatNumber(ticket.getSeatNumber());
         ticketDTO.setFlightClass(ticket.getFlightClass());
         ticketDTO.setPrice(ticket.getPrice());
+        if (ticket.getUser() != null)
+            ticketDTO.setUserId(ticket.getUser().getId());
         return ticketDTO;
     }
 
@@ -57,5 +61,13 @@ public class TicketDTO {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

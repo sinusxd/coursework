@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переадресация...</title>
+    <link rel="stylesheet" th:href="@{/styles/redirect.css}" href="../static/styles/redirect.css"/>
+</head>
+<body>
+<div class="spinner-container">
+    <div class="spinner"></div>
+    <p class = "success" th:if="${success}" th:text="${success}"></p>
+    <p class = "error" th:if="${error}" th:text="${error.toString()}"></p>
+    <p>Пожалуйста, подождите...</p>
+    <p>Переадресация</p>
+</div>
+<script>
+    setTimeout(function() {
+        window.location.href = "/myTickets"; // Замените URL на ваш целевой URL
+    }, 5000); // Переадресация через 5 секунд
+</script>
+</body>
+</html>

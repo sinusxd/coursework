@@ -3,18 +3,18 @@ package org.course.coursework.controller;
 import org.course.coursework.config.SecurityUtil;
 import org.course.coursework.dto.FlightDTO;
 import org.course.coursework.entity.Flight;
+import org.course.coursework.entity.Ticket;
 import org.course.coursework.entity.User;
 import org.course.coursework.exception.FlightNotFoundException;
 import org.course.coursework.exception.UserNotFoundException;
 import org.course.coursework.service.FlightService;
+import org.course.coursework.service.TicketService;
 import org.course.coursework.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -24,6 +24,8 @@ public class FlightController {
     FlightService flightService;
     @Autowired
     UserService userService;
+    @Autowired
+    TicketService ticketService;
     @GetMapping("/view-ticket")
     public String viewTicket(@RequestParam("flightId") Long flightId, Model model){
         FlightDTO flight = null;
@@ -44,6 +46,25 @@ public class FlightController {
         }
 
         return "view-ticket";
+    }
+
+    @PostMapping("/view-ticket")
+    public ModelAndView bookTicketAtFlight(@RequestParam("flightId") Long id, @RequestParam("ticketPlace") String ticketPlace){
+
+        ModelAndView modelAndView = new ModelAndView("redirect");
+        Ticket ticket = ticketService.getTicketByPlace(ticketPlace, id);
+        User user = null;
+        try {
+            user = userService.findUserByName(SecurityUtil.getCurrentUsername());
+        }
+        catch (UserNotFoundException e){
+            modelAndView.addObject("error", e.getMessage());
+            return modelAndView;
+        }
+        ticket.setUser(user);
+        ticketService.saveTicket(ticket);
+        return new ModelAndView("redirect", "success", "Билет успешно забронирован!");
+
     }
 
 }

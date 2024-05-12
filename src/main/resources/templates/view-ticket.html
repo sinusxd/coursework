@@ -8,137 +8,202 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="plane">
-    <div class="cockpit">
-        <h1>Выберите место</h1>
-        <p th:text="${flight.getDepartureAirportDTO().getCity()} + ' → ' + ${flight.getArrivalAirportDTO().getCity()}"></p>
-        <p th:text="'Пассажир: ' + ${passport.getLastName()} + ' ' + ${passport.getFirstName()} + ' ' + ${passport.getSecondName()}"></p>
+    <div class="plane">
+        <div class = "main">
+            <div class = "header">
+                <div class = "left">
+                    <p style="opacity: 0;">123</p>
+                </div>
+                <div class="cockpit">
+                    <h1>Выберите место</h1>
+                </div>
+            </div>
+            <div class = "rows">
+                <div class="row">
+                    <p>A</p>
+                    <ol class="seats" type="A">
+                        <li class="seat">
+                            <input type="checkbox" id="A1"/>
+                            <label for="A1"></label>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row">
+                    <p>B</p>
+                    <ol class="seats" type="B">
+                        <li class="seat">
+                            <input type="checkbox" id="B1" />
+                            <label for="B1"></label>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row">
+                    <p>C</p>
+                    <ol class="seats" type="C">
+                        <li class="seat">
+                            <input type="checkbox" id="C1" />
+                            <label for="C1"></label>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row">
+                    <p style="opacity: 0;">N</p>
+                    <ol class="seats" type="N">
+                        <li class="seat">
+                            <label style="background-color: white; color: black;" >1</label>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row">
+                    <p>D</p>
+                    <ol class="seats" type="D">
+                        <li class="seat">
+                            <input type="checkbox" id="D1" />
+                            <label for="D1"></label>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row">
+                    <p>E</p>
+                    <ol class="seats" type="E">
+                        <li class="seat">
+                            <input type="checkbox" id="E1" />
+                            <label for="E1"></label>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row">
+                    <p>F</p>
+                    <ol class="seats" type="F">
+                        <li class="seat">
+                            <input type="checkbox" id="F1" />
+                            <label for="F1"></label>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <form th:action = "@{/view-ticket}" method = "post" class = "book">
+            <h2>Ваш билет</h2>
+            <div class = "ticket">
+                <p th:text="'Пассажир: ' + ${passport.getFirstName()} + ' '+ ${passport.getLastName()} + ' ' + ${passport.getSecondName()}"></p>
+                <p th:text="${flight.getDepartureAirportDTO().getCity()} +' → ' + ${flight.getArrivalAirportDTO().getCity()}"></p>
+                <p id = "place">Место: не выбрано</p>
+                <p id = "placeClass">Класс: не выбран</p>
+            </div>
+            <input type="hidden" name = "flightId" th:value="${flight.getId()}">
+            <input type="hidden" name = "ticketPlace" id = "ticketPlace">
+            <button type="submit">Забронировать</button>
+        </form>
     </div>
-    <div class = "rows">
-        <div class="row">
-            <p>A</p>
-            <ol class="seats" type="A">
-                <li class="seat">
-                    <input type="checkbox" id="A1"/>
-                    <label for="A1"></label>
-                </li>
-            </ol>
-        </div>
-        <div class="row">
-            <p>B</p>
-            <ol class="seats" type="B">
-                <li class="seat">
-                    <input type="checkbox" id="B1" />
-                    <label for="B1"></label>
-                </li>
-            </ol>
-        </div>
-        <div class="row">
-            <p>C</p>
-            <ol class="seats" type="C">
-                <li class="seat">
-                    <input type="checkbox" id="C1" />
-                    <label for="C1"></label>
-                </li>
-            </ol>
-        </div>
-        <div class="row">
-            <p style="opacity: 0;">N</p>
-            <ol class="seats" type="N">
-                <li class="seat">
-                    <label style="background-color: white;" >1</label>
-                </li>
-            </ol>
-        </div>
-        <div class="row">
-            <p>D</p>
-            <ol class="seats" type="D">
-                <li class="seat">
-                    <input type="checkbox" id="D1" />
-                    <label for="D1"></label>
-                </li>
-            </ol>
-        </div>
-        <div class="row">
-            <p>E</p>
-            <ol class="seats" type="E">
-                <li class="seat">
-                    <input type="checkbox" id="E1" />
-                    <label for="E1"></label>
-                </li>
-            </ol>
-        </div>
-        <div class="row">
-            <p>F</p>
-            <ol class="seats" type="F">
-                <li class="seat">
-                    <input type="checkbox" id="F1" />
-                    <label for="F1"></label>
-                </li>
-            </ol>
-        </div>
-    </div>
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", (e) => {
-        //document.getElementById("A1").setAttribute('disabled', 'disabled');
-
-        let seats = document.querySelectorAll(".seat");
-        let letters = ['A', 'B', 'C', 'N', 'D', 'E', 'F']
-        for (let i = 0 ; i < 7; ++i){
-            let seat = seats[i];
-            for (let j = 2; j <= 25; ++j){
-                if (i == 3){
-                    let lab = document.createElement("label");
-                    lab.textContent = j;
-                    lab.style.backgroundColor = 'white';
-                    seat.appendChild(lab);
-                    continue;
+    <script>
+        function clearColors(){
+            let letters = ['A', 'B', 'C', 'D', 'E', 'F']
+            for (let i = 0 ; i < 6; ++i){
+                for (let j = 1; j < 26; ++j){
+                    let label = document.getElementById(letters[i] + j).nextElementSibling;
+                    if (j <= 5)
+                        label.style.backgroundColor = "#f7722e";
+                    else
+                        label.style.backgroundColor = "#F0F0F0";
                 }
-                let inp = document.createElement("input");
-                inp.type = "checkbox";
-                inp.id = letters[i] + j;
-                let lab = document.createElement("label");
-                lab.setAttribute("for", inp.id);
-                seat.appendChild(inp);
-                seat.appendChild(lab);
-
             }
         }
-        let checkboxes = document.querySelectorAll("input[type='checkbox']");
-        console.log(checkboxes)
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                // Снимаем отметку со всех чекбоксов, кроме текущего
-                if (this.checked) {
-                    checkboxes.forEach(box => {
-                        if (box !== this) box.checked = false;
-                    });
+        document.addEventListener("DOMContentLoaded", (e) => {
+            const form = document.querySelector('.book'); // Получаем форму по классу
+
+            form.addEventListener('submit', function(event) {
+                const ticketPlace = document.getElementById('ticketPlace').value; // Получаем значение скрытого поля
+                if (ticketPlace.trim() === '') { // Проверяем, не пусто ли значение
+                    event.preventDefault(); // Отменяем отправку формы
+                    alert('Пожалуйста, выберите место.'); // Выводим сообщение пользователю
                 }
             });
-        });
-        const params = new URLSearchParams(window.location.search);
-        const query = params.get("flightId");
-        $.ajax({
-            url: "/api/getTicketsByFlightId/" + query,
-            type: 'GET',
-            success: function(data) {
-                data.forEach(function(ticketDTO) {
-                    // Находим input по id, который соответствует seatNumber
-                    var seatInput = document.getElementById(ticketDTO.seatNumber);
-                    // Проверяем, существует ли такой элемент
-                    if (seatInput) {
-                        // Добавляем класс cross-checkbox
-                        seatInput.classList.add('cross-checkbox');
-                        seatInput.setAttribute("disabled", "disabled");
+            let seats = document.querySelectorAll(".seat");
+            let letters = ['A', 'B', 'C', 'N', 'D', 'E', 'F']
+            for (let i = 0 ; i < 7; ++i){
+                let seat = seats[i];
+                for (let j = 2; j <= 25; ++j){
+                    if (i == 3){
+                        let lab = document.createElement("label");
+                        lab.textContent = j;
+                        lab.style.backgroundColor = 'white';
+                        lab.style.color = 'black';
+                        seat.appendChild(lab);
+                        continue;
+                    }
+
+                    let inp = document.createElement("input");
+                    inp.type = "checkbox";
+                    inp.id = letters[i] + j;
+                    let lab = document.createElement("label");
+                    lab.setAttribute("for", inp.id);
+                    if (j > 1 && j < 6){
+                        lab.style.backgroundColor = "#f7722e";
+                        lab.style.opacity = '0.8';
+                    }
+                    seat.appendChild(inp);
+                    seat.appendChild(lab);
+
+                }
+            }
+            const checkboxes = document.querySelectorAll("input[type='checkbox']");
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    clearColors();
+                    if (!this.checked){
+                        const label = document.querySelector(`label[for='${this.id}']`);
+                        label.textContent = '';
+                        this.checked = false;
+                        document.getElementById("place").textContent = "Место: не выбрано";
+                        document.getElementById("placeClass").textContent = "Класс: не выбран";
+                        document.getElementById("ticketPlace").removeAttribute("value");
+                        return;
+                    }
+                    checkboxes.forEach(box => {
+                        const label = document.querySelector(`label[for='${box.id}']`);
+                        if (box !== this) {
+                            box.checked = false;
+                            label.textContent = ''; // Очищаем текст метки, если чекбокс не активен
+                        }
+                    });
+
+                    // Для активированного чекбокса устанавливаем текст метки равным его id
+                    if (this.checked) {
+                        const activeLabel = document.querySelector(`label[for='${this.id}']`);
+                        activeLabel.style.backgroundColor = "#0b73fe";
+                        activeLabel.textContent = this.id;
+                        document.getElementById("place").textContent = "Место: " + " " + activeLabel.textContent;
+                        document.getElementById("ticketPlace").value = activeLabel.textContent;
+                        document.getElementById("placeClass").textContent = "Класс: эконом";
+                        if (parseInt(activeLabel.textContent.charAt(1)) <= 5)
+                            document.getElementById("placeClass").textContent = "Класс: бизнес";
                     }
                 });
-            },
-            error: function(xhr, status, error) {
-                console.error("Произошла ошибка: " + error + " " + status);
-            }
-        });
-    })
-</script>
+            });
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get("flightId");
+            $.ajax({
+                url: "/api/getTicketsByFlightId/" + query,
+                type: 'GET',
+                success: function(data) {
+                    data.forEach(function(ticketDTO) {
+                        // Находим input по id, который соответствует seatNumber
+                        var seatInput = document.getElementById(ticketDTO.seatNumber);
+                        // Проверяем, существует ли такой элемент
+                        if (ticketDTO.userId) {
+                            // Добавляем класс cross-checkbox
+                            seatInput.classList.add('cross-checkbox');
+                            seatInput.setAttribute("disabled", "disabled");
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Произошла ошибка: " + error + " " + status);
+                }
+            });
+        })
+    </script>
 </body>
 </html>

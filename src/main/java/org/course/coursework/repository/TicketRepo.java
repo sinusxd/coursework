@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TicketRepo extends CrudRepository<Ticket, Long> {
-
+    Ticket findTicketBySeatNumberAndFlight_Id(String seatNumber, Long id);
 }

@@ -12,7 +12,7 @@ public class Ticket {
     Flight flight;
     @Column(name = "seat_number")
     String seatNumber;
-    @Column(name = "class")
+    @Column(name = "seat_class")
     String flightClass;
     @ManyToOne(cascade =  CascadeType.ALL)
     @JoinColumn(name = "user_id")

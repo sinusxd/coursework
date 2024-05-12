@@ -1,4 +1,4 @@
-INSERT INTO airlines (name, icao_code) VALUES
+    INSERT INTO airlines (name, icao_code) VALUES
     ('American Airlines', 'AAL'),
     ('Delta Air Lines', 'DAL'),
     ('United Airlines', 'UAL'),

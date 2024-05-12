@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваши билеты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/styles/user-page.css}" href="../static/styles/user-page.css"/>
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <img th:src="@{/images/logo.png}">
+        <p>Airline Tickets</p>
+    </div>
+    <nav>
+        <a href="/index" style="color: #fff; text-decoration: none; margin-right: 15px;">Главная</a>
+        <a href="/myTickets" style="color: #fff; text-decoration: none;">Профиль</a>
+    </nav>
+</div>
+<div class="container">
+    <h2>Ваши билеты</h2>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th>Дата и время вылета</th>
+            <th>Дата и время прибытия</th>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>Номер места</th>
+            <th>Класс</th>
+            <th>Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.getFlight().getDepartureDate()} + ' ' + ${ticket.getFlight().getDepartureTime()}">01/01/2024 10:00</td>
+            <td th:text="${ticket.getFlight().getArrivalDate()} + ' ' + ${ticket.getFlight().getArrivalTime()}">01/01/2024 12:00</td>
+            <td th:text="${ticket.getFlight().getDepartureAirport().getCity() + ', ' + ticket.getFlight().getDepartureAirport().getCountry()}">JFK</td>
+            <td th:text="${ticket.getFlight().getArrivalAirport().getCity() + ', ' + ticket.getFlight().getArrivalAirport().getCountry()}">LAX</td>
+            <td th:text="${ticket.getSeatNumber()}">12A</td>
+            <td th:text="${ticket.getFlightClass()}">Эконом</td>
+            <td th:text="${ticket.getPrice()} + ' ₽'">199 $</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="footer">
+        <p>Спасибо за использование наших услуг!</p>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
