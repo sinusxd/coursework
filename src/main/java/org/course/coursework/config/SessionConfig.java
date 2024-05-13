@@ -15,7 +15,7 @@ public class SessionConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/aviasales");
+        dataSource.setUrl("jdbc:postgresql://db:5432/aviasales");
         dataSource.setUsername("roflandown");
         dataSource.setPassword("1234");
         return dataSource;
