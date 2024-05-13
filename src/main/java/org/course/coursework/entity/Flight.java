@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "flights")
 public class Flight {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     @OneToOne(cascade =  CascadeType.ALL)
     @JoinColumn(name = "airline_id")

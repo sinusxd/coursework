@@ -19,6 +19,7 @@
         <nav>
             <a href="/index" style="color: #fff; text-decoration: none; margin-right: 15px;">Главная</a>
             <a href="/myTickets" style="color: #fff; text-decoration: none;">Профиль</a>
+            <a href = "/logout" style="color: #fff; text-decoration: none; margin-left: 10px">Выйти</a>
         </nav>
     </div>
     <div class = "center">
@@ -53,7 +54,7 @@
                     </div>
                     <div class="arrival">
                         <span><strong th:text="${flight.getArrivalTime()}"></strong></span>
-                        <span th:text="${flight.getDepartureAirportDTO().getCity()}"></span>
+                        <span th:text="${flight.getArrivalAirportDTO().getCity()}"></span>
                         <span th:text="${#temporals.format(flight.getArrivalDate(), 'd MMMM, EEE')}"></span>
                     </div>
                 </div>

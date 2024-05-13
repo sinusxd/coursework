@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "airports")
 public class Airport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     @Column(name = "airport_code")
     String airportCode;

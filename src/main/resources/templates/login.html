@@ -19,6 +19,7 @@
                 <input type="password" name="password" placeholder="Пароль" required/>
                 <input class = "reg" type="submit" value="Авторизация" required/>
             </form>
+            <p>Нет акаунта? <a th:href="@{/register}">Зарегистрируйтесь</a></p>
             <div th:if="${error}" th:text="${error}" style="color: red;"></div>
         </div>
     </div>

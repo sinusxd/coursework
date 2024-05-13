@@ -35,4 +35,22 @@ public class FlightService {
         }
         throw new FlightNotFoundException("Полета с id: " + id + " не найдено!");
     }
+
+    public List<Flight> findAll(){
+        return (List<Flight>) flightRepo.findAll();
+    }
+
+    public String addFlight(Flight flight){
+        try {
+            flightRepo.save(flight);
+        }
+        catch (Exception e){
+            return e.getMessage();
+        }
+        return "success";
+    }
+
+    public void deleteFlight(Long id){
+        flightRepo.deleteById(id);
+    }
 }

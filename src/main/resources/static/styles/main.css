@@ -118,6 +118,7 @@ form button:hover{
     border-radius: 8px;
     font-family: "Lato", sans-serif;
     font-style: normal;
+    margin-top: 10px;
 }
 
 .price-tag {
@@ -141,7 +142,14 @@ form button:hover{
     text-align: center;
     color: green;
 }
-
+.price-tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.price-tag a{
+    display: block;
+}
 
 .button {
     width: 100%;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Panel</title>
+</head>
+    <body>
+        <h1>Admin Panel</h1>
+
+        <!-- Раздел для авиакомпаний -->
+        <section>
+            <h3>Add New Airline</h3>
+            <form th:action="@{/admin/airlines/add}" method="post">
+                <input type="text" name="name" placeholder="Name" required/>
+                <input type="text" name="icaoCode" placeholder="ICAO Code" required/>
+                <button type="submit">Add Airline</button>
+            </form>
+            <h2>Airlines</h2>
+            <div th:each="airline : ${airlines}">
+                <p th:text="${airline.name} + ' (' + ${airline.icaoCode} + ')'"></p>
+                <a th:href="@{/admin/airlines/delete/{id}(id=${airline.id})}">Delete</a>
+            </div>
+        </section>
+
+        <!-- Раздел для аэропортов -->
+        <section>
+            <form th:action="@{/admin/airports/add}" method="post">
+                <input type="text" name="airportCode" placeholder="Airport Code" required/>
+                <input type="text" name="airportName" placeholder="Airport Name" required/>
+                <input type="text" name="city" placeholder="City" required/>
+                <input type="text" name="country" placeholder="Country" required/>
+                <button type="submit">Add Airport</button>
+            </form>
+            <h2>Airports</h2>
+            <div th:each="airport : ${airports}">
+                <p th:text="${airport.airportName} + ', ' + ${airport.city} + ', ' + ${airport.country} + ' (' + ${airport.airportCode} + ')'"></p>
+                <a th:href="@{/admin/airports/delete/{id}(id=${airport.id})}">Delete</a>
+            </div>
+            <h3>Add New Airport</h3>
+        </section>
+
+        <!-- Раздел для рейсов -->
+        <section>
+            <h3>Add New Flight</h3>
+            <form th:action="@{/admin/flights/add}" method="post">
+                <input type="text" name="airlineId" placeholder="Airline ID" required/>
+                <input type="text" name="departureAirportId" placeholder="Departure Airport ID" required/>
+                <input type="text" name="arrivalAirportId" placeholder="Arrival Airport ID" required/>
+                <input type="date" name="departureDate" required/>
+                <input type="time" name="departureTime" required/>
+                <input type="date" name="arrivalDate" required/>
+                <input type="time" name="arrivalTime" required/>
+                <button type="submit">Add Flight</button>
+            </form>
+            <h2>Flights</h2>
+            <div th:each="flight : ${flights}">
+                <p th:text="${flight.airline.name} + ' from ' + ${flight.departureAirport.airportName} + ' to ' + ${flight.arrivalAirport.airportName} + ', Departure: ' + ${flight.departureDate} + ' ' + ${flight.departureTime} + ', Arrival: ' + ${flight.arrivalDate} + ' ' + ${flight.arrivalTime}"></p>
+                <a th:href="@{/admin/flights/delete/{id}(id=${flight.id})}">Delete</a>
+            </div>
+        </section>
+    </body>
+</html>

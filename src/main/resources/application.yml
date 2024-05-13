@@ -26,3 +26,4 @@ server:
       enabled: true
       force: true
       charset: UTF-8
+

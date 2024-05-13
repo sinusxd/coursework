@@ -64,7 +64,6 @@ public class FlightController {
         ticket.setUser(user);
         ticketService.saveTicket(ticket);
         return new ModelAndView("redirect", "success", "Билет успешно забронирован!");
-
     }
 
 }

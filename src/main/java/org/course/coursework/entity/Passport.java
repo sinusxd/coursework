@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "passports")
 public class Passport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     @Column(name = "last_name")
     String lastName;

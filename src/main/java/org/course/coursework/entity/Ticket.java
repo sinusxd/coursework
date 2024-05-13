@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Table(name = "tickets")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flight_id")
