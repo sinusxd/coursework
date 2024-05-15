@@ -29,7 +29,7 @@
                 <span style = "color: white" class="arrow">→</span>
                 <input type="text" placeholder="Куда" class="searchCity" th:field="*{to}"/>
                 <div id="date">
-                    <input type="text" id="datepicker-display" placeholder="Когда"/> <!-- Видимое пользователю -->
+                    <input th:value="${date != null ? date : ''}" type="text" id="datepicker-display" placeholder="Когда"/> <!-- Видимое пользователю -->
                     <input type="hidden" id="datepicker" th:field="*{when}"/> <!-- Скрытое поле для сервера -->
                 </div>
                 <select id="class-select" th:field="*{classSelect}">

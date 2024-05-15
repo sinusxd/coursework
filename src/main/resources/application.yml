@@ -5,12 +5,11 @@ spring:
       initialize-schema: always
       table-name: spring_session
   datasource:
-    url: jdbc:postgresql://localhost:5432/aviasales?characterEncoding=UTF-8
+    url: jdbc:postgresql://db:5432/aviasales?characterEncoding=UTF-8
     username: roflandown
     password: 1234
     driver-class-name: org.postgresql.Driver
   jpa:
-    show-sql: true
     hibernate:
       ddl-auto: update
     properties:

@@ -7,6 +7,7 @@ import org.course.coursework.repository.FlightRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,8 +24,8 @@ public class FlightService {
                 .collect(Collectors.toList());
     }
 
-    public List<FlightDTO> findFlights(String from, String to){
-        return flightRepo.findFlightsByDepartureAirport_CityAndArrivalAirport_City(from, to)
+    public List<FlightDTO> findFlights(String from, String to, LocalDate departureDate){
+        return flightRepo.findFlightsByDepartureAirport_CityAndArrivalAirport_CityAndDepartureDate(from, to, departureDate)
                 .stream().map(FlightDTO::fromEntity).collect(Collectors.toList());
 
     }
