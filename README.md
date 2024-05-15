@@ -29,10 +29,5 @@ docker-compose up
 
 ![Alt text](https://i.postimg.cc/SKkdwtZT/image.png "Optional title")
 
-<h4>Данные для входа:</h4>
 
-```
-user: admin
-password: admin
-```
 
