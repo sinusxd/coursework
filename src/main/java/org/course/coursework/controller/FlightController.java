@@ -11,6 +11,8 @@ import org.course.coursework.service.FlightService;
 import org.course.coursework.service.TicketService;
 import org.course.coursework.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,10 @@ public class FlightController {
     TicketService ticketService;
     @GetMapping("/view-ticket")
     public String viewTicket(@RequestParam("flightId") Long flightId, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAdmin = authentication.getAuthorities().stream()
+                .anyMatch(role -> role.getAuthority().equals("ROLE_ADMIN"));
+        model.addAttribute("isAdmin", isAdmin);
         FlightDTO flight = null;
         try {
             flight = flightService.findFlightById(flightId);

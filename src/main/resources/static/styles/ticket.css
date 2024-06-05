@@ -152,3 +152,35 @@ body {
     background-color: #fe5900;
     opacity: 0.8;
 }
+.head {
+    background-color: #0b73fe;
+    font-family: "Lato", sans-serif;
+    color: #ffffff;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+.head .logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.head p{
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+.head img{
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+}
+
+.head nav{
+    font-family: "Lato", sans-serif;
+}

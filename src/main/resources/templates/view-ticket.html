@@ -8,6 +8,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <div class="head">
+        <div class="logo">
+            <img th:src="@{/images/logo.png}">
+            <p>Airline Tickets</p>
+        </div>
+        <nav>
+            <a th:if="${isAdmin}" href="/admin" style="color: #fff; text-decoration: none; margin-right: 15px">Админ-панель</a>
+            <a href="/index" style="color: #fff; text-decoration: none; margin-right: 15px;">Главная</a>
+            <a th:if="${!isAdmin}" href="/myTickets" style="color: #fff; text-decoration: none;">Профиль</a>
+            <a href = "/logout" style="color: #fff; text-decoration: none; margin-left: 10px">Выйти</a>
+        </nav>
+    </div>
     <div class="plane">
         <div class = "main">
             <div class = "header">

@@ -5,6 +5,8 @@ import org.course.coursework.dto.SearchDTO;
 import org.course.coursework.entity.User;
 import org.course.coursework.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,10 @@ public class MainController {
     FlightService flightService;
     @GetMapping("/index")
     public String showForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAdmin = authentication.getAuthorities().stream()
+                .anyMatch(role -> role.getAuthority().equals("ROLE_ADMIN"));
+        model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("searchDTO", new SearchDTO());
         model.addAttribute("flights", flightService.findAll().stream()
                 .map(FlightDTO::fromEntity).collect(Collectors.toList()));
@@ -46,7 +52,8 @@ public class MainController {
     }
     @PostMapping("/index")
     public ModelAndView searchFlights(@ModelAttribute SearchDTO searchDTO){
-        System.out.println(searchDTO);
+        if (searchDTO.getWhen().equals("") || searchDTO.getFrom().equals("") || searchDTO.getTo().equals(""))
+            return new ModelAndView("redirect:/index");
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject(searchDTO);
         String from = (searchDTO.getFrom().substring(0, searchDTO.getFrom().indexOf(" ")));

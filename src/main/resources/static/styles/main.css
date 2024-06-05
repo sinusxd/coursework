@@ -130,6 +130,7 @@ form button:hover{
     height: 100%;
 }
 
+
 .flight-info {
     flex-basis: 70%;
     display: flex;
@@ -146,9 +147,6 @@ form button:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.price-tag a{
-    display: block;
 }
 
 .button {
@@ -168,6 +166,10 @@ form button:hover{
     margin-right: 10px;
 }
 
+.departure span, .arrival span{
+    width: 5rem;
+}
+
 .duration {
     font-size: smaller;
     display: flex;
@@ -181,7 +183,7 @@ form button:hover{
     background-color: darkorange;
 }
 
-.price-tag a{
+.price-tag div{
     margin-bottom: 1rem;
     width: 10rem;
     height: 4rem;
@@ -194,9 +196,15 @@ form button:hover{
     font-size: large;
     font-weight: 700;
     text-decoration: none;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.price-tag a:hover{
+.price-tag a{
+    text-decoration: none;
+    color: white;
+}
+.price-tag div:hover{
     background-color: #f56618;
 }
 
